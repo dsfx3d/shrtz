@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Django stuff:
+*.log
+.static_storage/
+.media/
+local_settings.py
+
+# Rope project settings
+.ropeproject
+
+#
+*.sqlite3
+.vscode/
