@@ -32,13 +32,13 @@ class URLDictionary(models.Model):
         return f'{self.shrtzy} - {url}'
 
     @staticmethod
-    def get_or_create(value):
+    def get_shrtzy(value):
         url_val = URLValidator()
 
         try:
             url_val(value)
         except ValidationError:
             return URLDictionary.objects.get(shrtzy=value)
-        
+
         shrtzy, _ = URLDictionary.objects.get_or_create(url=value)
         return shrtzy

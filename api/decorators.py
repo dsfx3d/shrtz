@@ -29,7 +29,7 @@ def validate_requested_url(fn):
             )
 
         try: # URL Validation
-            if url and url!=Misc.EMPTY: 
+            if url and url!=Misc.EMPTY:
                 urlValidator(url)
         except ValidationError:
             error_msg = {APIKeys.MSG: APIResponseErrorMessages.INVALID_URL_REQUEST}
@@ -39,7 +39,6 @@ def validate_requested_url(fn):
             )
 
         return fn(*args, **kwargs)
-    
     return decorated
 
 
@@ -57,7 +56,7 @@ def validate_requested_shrtzy(fn):
                 data=error_msg
             )
 
-        if re.findall("\W", shrtzy):
+        if re.findall(r'\W', shrtzy):
             error_msg = {APIKeys.MSG: APIResponseErrorMessages.SHRTZY_CONTAIN_SPECIAL_CHARS}
             return Response(
                 status=status.HTTP_406_NOT_ACCEPTABLE,

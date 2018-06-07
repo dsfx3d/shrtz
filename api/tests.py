@@ -7,7 +7,6 @@ import json
 from res.strings import APIResponseErrorMessages as Error, APIKeys, APIMethods, APIEndpointPaths
 from res.numbers import APILimits
 from .models import URLDictionary
-from .serializers import URLDictionarySerializer
 
 
 
@@ -22,12 +21,11 @@ class BaseViewTestCase(APITestCase):
         :param url:
         :return shrtzyObj:
         """
-        shrtzyObj = URLDictionary.get_or_create(url)
+        shrtzyObj = URLDictionary.get_shrtzy(url)
         return shrtzyObj
 
     def make_a_request(self, method, **kwargs):
         """
-        
         """
         if method==APIMethods.POST:
             return self.client.post(
@@ -46,10 +44,12 @@ class BaseViewTestCase(APITestCase):
         else:
             return None
 
-    def shrtzy_data(self, shrtzy):
+    @staticmethod
+    def shrtzy_data(shrtzy):
         return {APIKeys.SHRTZY: shrtzy}
     
-    def url_data(self, url):
+    @staticmethod
+    def url_data(url):
         return {APIKeys.URL: url}
 
     def setUp(self):
@@ -77,16 +77,16 @@ class ShrtnrEndpointAcceptanceTest(BaseViewTestCase):
         self.assertEqual(expected_key_value, response.data[key])
 
 
-    # ACCEPTANCE CRITERIA - 1.1    
+    # ACCEPTANCE CRITERIA - 1.1
     def test_post_shrtnr_always_return_shrtzy_for_valid_url(self):
         response = self.make_a_request(
             method=APIMethods.POST,
             data=self.valid_url_data
         )
         self.verify_shrtnr_response(
-            response, 
+            response,
             APIKeys.URL, self.valid_url,
-            status.HTTP_302_FOUND
+            status.HTTP_200_OK
         )
         
 
@@ -127,7 +127,7 @@ class ShrtnrEndpointAcceptanceTest(BaseViewTestCase):
         self.verify_shrtnr_response(
             response,
             APIKeys.URL, self.valid_url,
-            status.HTTP_302_FOUND
+            status.HTTP_200_OK
         )
 
     
@@ -202,6 +202,6 @@ class ShrtnrEndpointAcceptanceTest(BaseViewTestCase):
         )
         self.verify_shrtnr_response(
             response,
-            APIKeys.MSG, Error.METHOD_GET_NOT_ALLOWED,
+            APIKeys.MSG, Error.METHOD_NOT_ALLOWED,
             status.HTTP_405_METHOD_NOT_ALLOWED
         )
