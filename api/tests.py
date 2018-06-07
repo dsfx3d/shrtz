@@ -47,7 +47,7 @@ class BaseViewTestCase(APITestCase):
     @staticmethod
     def shrtzy_data(shrtzy):
         return {APIKeys.SHRTZY: shrtzy}
-    
+
     @staticmethod
     def url_data(url):
         return {APIKeys.URL: url}

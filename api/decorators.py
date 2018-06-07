@@ -64,7 +64,6 @@ def validate_requested_shrtzy(fn):
             )
 
         return fn(*args, **kwargs)
-    
     return decorated
 
 

@@ -2,16 +2,15 @@ from django.test import TestCase
 from django.urls import reverse
 
 from rest_framework.views import status
-from rest_framework.test import APIClient
 
-from res.strings import APIEndpointPaths as Path, APIMethods, APIKeys, APIResponseErrorMessages
+from res.strings import APIEndpointPaths as Path, APIMethods, APIKeys
 from res.numbers import APILimits
 from api.tests import BaseViewTestCase as BTC
 
 
 
 class BaseViewTestCase(TestCase):
-    
+
     def setUp(self):
         self.non_existant_shrtzy = 'doesnotexist'
         self.invalid_shrtzy = 'a%ygb'

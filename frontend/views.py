@@ -6,8 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import status
 
 from api.models import URLDictionary
-from api.decorators import validate_requested_shrtzy
-from res.strings import APIMethods, APIKeys, APIResponseErrorMessages as Error, HTTPResponseErrorMessages
+from res.strings import APIMethods, APIKeys, APIResponseErrorMessages as Error
 from .validators import validate_shrtzy
 
 

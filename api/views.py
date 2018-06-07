@@ -50,7 +50,7 @@ class GetOrCreateShrtzyView(generics.GenericAPIView):
             status = status.HTTP_405_METHOD_NOT_ALLOWED,
             data = {APIKeys.MSG: Error.METHOD_NOT_ALLOWED}
         )
-    
+
 
     def put(self, request, *args, **kwargs):
         return Response(
